@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cafetería El Rincón: café de la casa, desayunos y meriendas en San Cristóbal, Artemisa.">
+  <title>Cafetería El Rincón</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="cabecera">
+    <a href="#inicio" class="logo">El Rincón</a>
+    <button class="boton-menu" id="boton-menu" aria-label="Abrir menú">Menú</button>
+    <nav id="navegacion" class="navegacion">
+      <a href="#servicios">Servicios</a>
+      <a href="#carta">Carta</a>
+      <a href="#horario">Horario</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="portada">
+      <h1>Cafetería El Rincón</h1>
+      <p>Café recién hecho, desayunos caseros y un lugar tranquilo en el centro de San Cristóbal.</p>
+      <a href="#carta" class="boton">Ver la carta</a>
+    </section>
+
+    <section id="servicios" class="seccion">
+      <h2>Qué ofrecemos</h2>
+      <div class="tarjetas">
+        <article class="tarjeta">
+          <h3>Desayunos</h3>
+          <p>Pan con tortilla, jugos naturales y café con leche desde temprano.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Meriendas</h3>
+          <p>Dulces caseros, bocaditos y refrescos para la tarde.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Pedidos para eventos</h3>
+          <p>Cumpleaños y reuniones: preparamos bandejas por encargo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="carta" class="seccion seccion-clara">
+      <h2>Nuestra carta</h2>
+      <ul class="carta">
+        <li><span>Café espresso</span><span>150 CUP</span></li>
+        <li><span>Café con leche</span><span>200 CUP</span></li>
+        <li><span>Jugo natural</span><span>250 CUP</span></li>
+        <li><span>Pan con tortilla</span><span>300 CUP</span></li>
+        <li><span>Bocadito de jamón y queso</span><span>350 CUP</span></li>
+        <li><span>Dulce del día</span><span>200 CUP</span></li>
+      </ul>
+      <p class="nota">Precios de ejemplo para este proyecto.</p>
+    </section>
+
+    <section id="horario" class="seccion">
+      <h2>Horario</h2>
+      <table class="horario">
+        <tr><td>Lunes a viernes</td><td>7:00 a.m. a 7:00 p.m.</td></tr>
+        <tr><td>Sábados</td><td>8:00 a.m. a 9:00 p.m.</td></tr>
+        <tr><td>Domingos</td><td>9:00 a.m. a 3:00 p.m.</td></tr>
+      </table>
+    </section>
+
+    <section id="contacto" class="seccion seccion-clara">
+      <h2>Contacto</h2>
+      <p>Calle Principal #123, San Cristóbal, Artemisa.</p>
+      <p>Teléfono: +53 5 000 0000</p>
+      <form class="formulario" id="formulario">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" required>
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" rows="4" required></textarea>
+        <button type="submit" class="boton">Enviar mensaje</button>
+        <p id="respuesta" class="respuesta" hidden></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Cafetería El Rincón, San Cristóbal. Proyecto de portafolio por Darío Verdecia.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
