@@ -1,0 +1,143 @@
+// Datos del negocio y de la carta.
+// Para adaptar el sitio a otro cliente se cambia solo este archivo.
+
+window.DATOS = {
+  negocio: {
+    nombre: "Cafetería El Rincón",
+    telefono: "+53 5 000 0000",
+    whatsapp: "5350000000",
+    direccion: "Calle Principal #123, San Cristóbal, Artemisa",
+  },
+
+  categorias: [
+    { id: "cafes", nombre: "Cafés" },
+    { id: "desayunos", nombre: "Desayunos" },
+    { id: "meriendas", nombre: "Meriendas" },
+    { id: "frias", nombre: "Bebidas frías" },
+  ],
+
+  productos: [
+    {
+      id: "espresso",
+      nombre: "Café espresso",
+      categoria: "cafes",
+      descripcion: "Tiro corto e intenso, de tueste oscuro.",
+      precio: 150,
+    },
+    {
+      id: "cafe-con-leche",
+      nombre: "Café con leche",
+      categoria: "cafes",
+      descripcion: "Espresso con leche vaporizada, en taza de 180 ml.",
+      precio: 200,
+      etiqueta: "El más pedido",
+    },
+    {
+      id: "capuchino",
+      nombre: "Capuchino",
+      categoria: "cafes",
+      descripcion: "Doble espresso, leche vaporizada y espuma cremosa.",
+      precio: 300,
+    },
+    {
+      id: "americano",
+      nombre: "Americano",
+      categoria: "cafes",
+      descripcion: "Espresso alargado con agua caliente. Suave y largo.",
+      precio: 180,
+    },
+    {
+      id: "chocolate",
+      nombre: "Chocolate caliente",
+      categoria: "cafes",
+      descripcion: "Cacao cubano con leche y un toque de canela.",
+      precio: 250,
+    },
+    {
+      id: "pan-tortilla",
+      nombre: "Pan con tortilla",
+      categoria: "desayunos",
+      descripcion: "Pan de flauta con tortilla de huevo y queso fundido.",
+      precio: 300,
+      etiqueta: "El más pedido",
+    },
+    {
+      id: "sandwich-mixto",
+      nombre: "Sándwich mixto",
+      categoria: "desayunos",
+      descripcion: "Jamón y queso a la plancha, pan tostado por fuera.",
+      precio: 350,
+    },
+    {
+      id: "tostada",
+      nombre: "Tostada con mantequilla y mermelada",
+      categoria: "desayunos",
+      descripcion: "Dos rebanadas de pan del día, mermelada de guayaba.",
+      precio: 200,
+    },
+    {
+      id: "huevos-fritos",
+      nombre: "Huevos fritos con pan",
+      categoria: "desayunos",
+      descripcion: "Dos huevos, pan de flauta y café pequeño incluido.",
+      precio: 280,
+    },
+    {
+      id: "bocadito",
+      nombre: "Bocadito de jamón y queso",
+      categoria: "meriendas",
+      descripcion: "Pequeño, para acompañar el café de la tarde.",
+      precio: 120,
+    },
+    {
+      id: "dulce-dia",
+      nombre: "Dulce del día",
+      categoria: "meriendas",
+      descripcion: "Cambia cada día. Pregunta en la barra cuál hay hoy.",
+      precio: 200,
+      etiqueta: "Recién hecho",
+    },
+    {
+      id: "tarta-queso",
+      nombre: "Tarta de queso",
+      categoria: "meriendas",
+      descripcion: "Porción individual, con base de galleta.",
+      precio: 280,
+    },
+    {
+      id: "flan-coco",
+      nombre: "Flan de coco",
+      categoria: "meriendas",
+      descripcion: "Receta de la casa, con caramelo oscuro.",
+      precio: 250,
+    },
+    {
+      id: "jugo-natural",
+      nombre: "Jugo natural",
+      categoria: "frias",
+      descripcion: "Naranja, mango o guayaba, según la temporada.",
+      precio: 250,
+    },
+    {
+      id: "limonada",
+      nombre: "Limonada con hierbabuena",
+      categoria: "frias",
+      descripcion: "Fría, con hielo y hierbabuena fresca.",
+      precio: 200,
+    },
+    {
+      id: "refresco",
+      nombre: "Refresco en lata",
+      categoria: "frias",
+      descripcion: "Cola, naranja o limón. Siempre bien frío.",
+      precio: 350,
+    },
+    {
+      id: "malta",
+      nombre: "Malta fría",
+      categoria: "frias",
+      descripcion: "Botella de 330 ml.",
+      precio: 180,
+    },
+  ],
+};

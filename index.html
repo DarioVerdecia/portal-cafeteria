@@ -3,88 +3,250 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cafetería El Rincón: café de la casa, desayunos y meriendas en San Cristóbal, Artemisa.">
-  <title>Cafetería El Rincón</title>
+  <title>Cafetería El Rincón | Café, desayunos y pedidos en San Cristóbal</title>
+
+  <meta name="description" content="Cafetería El Rincón: café recién hecho, desayunos caseros y meriendas en San Cristóbal, Artemisa. Consulta la carta y haz tu pedido por WhatsApp.">
+  <meta name="theme-color" content="#4a2c1a">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cafetería El Rincón">
+  <meta property="og:description" content="Café recién hecho, desayunos caseros y meriendas en el centro de San Cristóbal.">
+  <meta property="og:locale" content="es_CU">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234a2c1a'/%3E%3Cpath d='M8 12h13v8a5 5 0 0 1-5 5h-3a5 5 0 0 1-5-5z' fill='%23f6efe6'/%3E%3Cpath d='M21 14h2a3 3 0 0 1 0 6h-2' fill='none' stroke='%23f6efe6' stroke-width='2.2'/%3E%3C/svg%3E">
+
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Aplica el tema guardado antes de pintar, para que no haya parpadeo.
+    (function () {
+      try {
+        var guardado = localStorage.getItem("rincon.tema");
+        var prefiereOscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.tema = guardado || (prefiereOscuro ? "oscuro" : "claro");
+      } catch (error) {
+        document.documentElement.dataset.tema = "claro";
+      }
+    })();
+  </script>
 </head>
 <body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
   <header class="cabecera">
-    <a href="#inicio" class="logo">El Rincón</a>
-    <button class="boton-menu" id="boton-menu" aria-label="Abrir menú">Menú</button>
-    <nav id="navegacion" class="navegacion">
-      <a href="#servicios">Servicios</a>
+    <a href="#inicio" class="logo">
+      <span class="logo-marca">El Rincón</span>
+      <span class="logo-lema">Cafetería</span>
+    </a>
+
+    <nav id="navegacion" class="navegacion" aria-label="Navegación principal">
       <a href="#carta">Carta</a>
+      <a href="#servicios">Servicios</a>
       <a href="#horario">Horario</a>
       <a href="#contacto">Contacto</a>
     </nav>
+
+    <div class="acciones">
+      <button class="accion" id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro">
+        <span aria-hidden="true" id="icono-tema">☾</span>
+      </button>
+
+      <button class="accion accion-carrito" id="boton-carrito" type="button" aria-expanded="false" aria-controls="carrito-panel">
+        <span aria-hidden="true">🛒</span>
+        <span class="accion-texto">Carrito</span>
+        <span class="contador" id="contador-carrito">0</span>
+      </button>
+
+      <button class="accion" id="boton-menu" type="button" aria-expanded="false" aria-controls="navegacion" aria-label="Abrir menú de navegación">
+        <span aria-hidden="true">☰</span>
+      </button>
+    </div>
   </header>
 
-  <main>
+  <main id="contenido">
     <section id="inicio" class="portada">
-      <h1>Cafetería El Rincón</h1>
-      <p>Café recién hecho, desayunos caseros y un lugar tranquilo en el centro de San Cristóbal.</p>
-      <a href="#carta" class="boton">Ver la carta</a>
-    </section>
+      <p class="portada-etiqueta">San Cristóbal, Artemisa</p>
+      <h1>Café recién hecho<br>y desayunos caseros</h1>
+      <p class="portada-texto">
+        Un lugar tranquilo en el centro del pueblo. Pasa por la barra o pide para llevar
+        y recógelo cuando esté listo.
+      </p>
 
-    <section id="servicios" class="seccion">
-      <h2>Qué ofrecemos</h2>
-      <div class="tarjetas">
-        <article class="tarjeta">
-          <h3>Desayunos</h3>
-          <p>Pan con tortilla, jugos naturales y café con leche desde temprano.</p>
-        </article>
-        <article class="tarjeta">
-          <h3>Meriendas</h3>
-          <p>Dulces caseros, bocaditos y refrescos para la tarde.</p>
-        </article>
-        <article class="tarjeta">
-          <h3>Pedidos para eventos</h3>
-          <p>Cumpleaños y reuniones: preparamos bandejas por encargo.</p>
-        </article>
+      <div class="portada-acciones">
+        <a class="boton" href="#carta">Ver la carta</a>
+        <a class="boton boton-fantasma" href="#contacto">Cómo llegar</a>
       </div>
+
+      <ul class="portada-datos">
+        <li><strong>Abierto</strong> 7:00 a.m. – 7:00 p.m.</li>
+        <li><strong>Pedidos</strong> para llevar y por encargo</li>
+        <li><strong>Efectivo</strong> y transferencia</li>
+      </ul>
     </section>
 
-    <section id="carta" class="seccion seccion-clara">
-      <h2>Nuestra carta</h2>
-      <ul class="carta">
-        <li><span>Café espresso</span><span>150 CUP</span></li>
-        <li><span>Café con leche</span><span>200 CUP</span></li>
-        <li><span>Jugo natural</span><span>250 CUP</span></li>
-        <li><span>Pan con tortilla</span><span>300 CUP</span></li>
-        <li><span>Bocadito de jamón y queso</span><span>350 CUP</span></li>
-        <li><span>Dulce del día</span><span>200 CUP</span></li>
-      </ul>
-      <p class="nota">Precios de ejemplo para este proyecto.</p>
+    <section id="carta" class="seccion">
+      <div class="seccion-cabecera">
+        <div>
+          <h2>Nuestra carta</h2>
+          <p class="seccion-texto">Elige lo que quieras y arma tu pedido. No necesitas cuenta de nada.</p>
+        </div>
+
+        <div class="buscador">
+          <label class="oculto" for="busqueda">Buscar en la carta</label>
+          <input type="search" id="busqueda" placeholder="Buscar un producto…" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar la carta por categoría"></div>
+
+      <div class="productos" id="lista-productos" aria-live="polite"></div>
+
+      <p class="vacio" id="carta-vacio" hidden>
+        No encontramos nada con ese nombre. Prueba con otra palabra.
+      </p>
+    </section>
+
+    <section id="servicios" class="seccion seccion-clara">
+      <div class="contenido-estrecho">
+        <h2>Pedidos para eventos</h2>
+        <p class="seccion-texto">
+          Preparamos bandejas de dulces, bocaditos y café para cumpleaños, reuniones
+          y actividades de trabajo. Se encargan con dos días de antelación.
+        </p>
+
+        <div class="tarjetas">
+          <article class="tarjeta">
+            <h3>Bandeja de dulces</h3>
+            <p>Veinticinco piezas surtidas: tartaletas, bocaditos y dulce del día.</p>
+            <span class="precio">3 500 CUP</span>
+          </article>
+          <article class="tarjeta">
+            <h3>Café para reuniones</h3>
+            <p>Termo de diez tazas con leche aparte, azúcar y vasos.</p>
+            <span class="precio">1 800 CUP</span>
+          </article>
+          <article class="tarjeta">
+            <h3>Desayuno de oficina</h3>
+            <p>Pan con tortilla, jugo natural y café para diez personas.</p>
+            <span class="precio">4 200 CUP</span>
+          </article>
+        </div>
+
+        <a class="boton" id="boton-encargo" href="#contacto">Pedir un encargo</a>
+      </div>
     </section>
 
     <section id="horario" class="seccion">
       <h2>Horario</h2>
       <table class="horario">
-        <tr><td>Lunes a viernes</td><td>7:00 a.m. a 7:00 p.m.</td></tr>
-        <tr><td>Sábados</td><td>8:00 a.m. a 9:00 p.m.</td></tr>
-        <tr><td>Domingos</td><td>9:00 a.m. a 3:00 p.m.</td></tr>
+        <caption class="oculto">Horario de atención de la cafetería</caption>
+        <tbody>
+          <tr data-dia="1,2,3,4,5"><th scope="row">Lunes a viernes</th><td>7:00 a.m. – 7:00 p.m.</td></tr>
+          <tr data-dia="6"><th scope="row">Sábados</th><td>8:00 a.m. – 9:00 p.m.</td></tr>
+          <tr data-dia="0"><th scope="row">Domingos</th><td>9:00 a.m. – 3:00 p.m.</td></tr>
+        </tbody>
       </table>
+      <p class="nota" id="estado-horario" hidden></p>
     </section>
 
     <section id="contacto" class="seccion seccion-clara">
-      <h2>Contacto</h2>
-      <p>Calle Principal #123, San Cristóbal, Artemisa.</p>
-      <p>Teléfono: +53 5 000 0000</p>
-      <form class="formulario" id="formulario">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" required>
-        <label for="mensaje">Mensaje</label>
-        <textarea id="mensaje" rows="4" required></textarea>
-        <button type="submit" class="boton">Enviar mensaje</button>
-        <p id="respuesta" class="respuesta" hidden></p>
-      </form>
+      <div class="contenido-estrecho">
+        <h2>Contacto</h2>
+
+        <div class="contacto-rejilla">
+          <div>
+            <h3>Dirección</h3>
+            <p>Calle Principal #123, San Cristóbal, Artemisa.</p>
+            <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Cafeter%C3%ADa+San+Crist%C3%B3bal+Artemisa" target="_blank" rel="noopener">Ver en el mapa</a></p>
+          </div>
+          <div>
+            <h3>Teléfono y WhatsApp</h3>
+            <p><a href="tel:+5350000000">+53 5 000 0000</a></p>
+            <p><a href="https://wa.me/5350000000" target="_blank" rel="noopener">Escribir por WhatsApp</a></p>
+          </div>
+          <div>
+            <h3>Encargos</h3>
+            <p>Los pedidos para eventos se confirman por WhatsApp con dos días de antelación.</p>
+          </div>
+        </div>
+
+        <p class="nota">
+          Los datos de contacto son de ejemplo, porque esta cafetería es un proyecto de portafolio.
+        </p>
+      </div>
     </section>
   </main>
 
   <footer class="pie">
-    <p>Cafetería El Rincón, San Cristóbal. Proyecto de portafolio por Darío Verdecia.</p>
+    <p>Cafetería El Rincón, San Cristóbal. Proyecto de portafolio de Darío Verdecia.</p>
+    <p class="pie-menor">Hecho con HTML, CSS y JavaScript, sin dependencias externas. <span id="anio"></span></p>
   </footer>
 
+  <!-- Carrito -->
+  <div class="velo" id="velo" hidden></div>
+
+  <aside class="carrito" id="carrito-panel" aria-label="Carrito de pedido" aria-hidden="true">
+    <header class="carrito-cabecera">
+      <h2>Tu pedido</h2>
+      <button class="cerrar" id="cerrar-carrito" type="button" aria-label="Cerrar el carrito">✕</button>
+    </header>
+
+    <div class="carrito-cuerpo">
+      <ul class="carrito-items" id="carrito-items"></ul>
+
+      <p class="carrito-vacio" id="carrito-vacio">
+        Todavía no has añadido nada. Abre la carta y elige lo que quieras.
+      </p>
+
+      <div class="carrito-resumen">
+        <dl>
+          <div><dt>Subtotal</dt><dd id="subtotal">0 CUP</dd></div>
+          <div><dt>Entrega</dt><dd>Se acuerda al confirmar</dd></div>
+        </dl>
+        <p class="nota">Precios en pesos cubanos. El pedido se confirma por WhatsApp.</p>
+      </div>
+
+      <form class="formulario" id="form-pedido" novalidate>
+        <div class="campo">
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+        </div>
+
+        <div class="campo">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel" required>
+        </div>
+
+        <div class="campo">
+          <label for="entrega">Cómo lo quieres</label>
+          <select id="entrega" name="entrega">
+            <option value="Recoger en la cafetería">Recoger en la cafetería</option>
+            <option value="Envío a domicilio">Envío a domicilio</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="nota">Nota para la cocina (opcional)</label>
+          <textarea id="nota" name="nota" rows="2" placeholder="Sin azúcar, pan bien tostado…"></textarea>
+        </div>
+
+        <p class="error" id="error-pedido" role="alert" hidden></p>
+
+        <button class="boton boton-ancho" type="submit" id="boton-pedido">Enviar pedido por WhatsApp</button>
+        <button class="enlace-boton" type="button" id="vaciar-carrito">Vaciar el carrito</button>
+      </form>
+
+      <div class="confirmacion" id="confirmacion" hidden>
+        <h3>Pedido preparado</h3>
+        <p>Se abrió WhatsApp con el resumen. Si no se abrió, copia el texto y envíalo al <a href="tel:+5350000000">+53 5 000 0000</a>.</p>
+        <pre id="resumen-pedido"></pre>
+        <button class="boton boton-ancho" type="button" id="copiar-pedido">Copiar el resumen</button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="avisos" id="avisos" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="datos.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
