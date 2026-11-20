@@ -48,10 +48,14 @@
     ultimoFoco: null,
   };
 
+  var transicionEnCurso = false;
+  var temaActual = "claro";
+
   /* ---------- Utilidades ---------- */
 
   function formatearPrecio(valor) {
-    return valor.toLocaleString("es-CU") + " CUP";
+    var numero = String(Math.round(valor)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return numero + " CUP";
   }
 
   function normalizar(texto) {
@@ -144,9 +148,10 @@
     });
   }
 
-  function crearTarjetaProducto(producto) {
+  function crearTarjetaProducto(producto, indice) {
     var articulo = document.createElement("article");
     articulo.className = "producto";
+    articulo.style.setProperty("--retraso", (indice % 12) * 45 + "ms");
 
     if (producto.etiqueta) {
       var etiqueta = document.createElement("span");
@@ -196,8 +201,8 @@
     var productos = productosVisibles();
 
     elementos.lista.replaceChildren();
-    productos.forEach(function (producto) {
-      elementos.lista.appendChild(crearTarjetaProducto(producto));
+    productos.forEach(function (producto, indice) {
+      elementos.lista.appendChild(crearTarjetaProducto(producto, indice));
     });
 
     elementos.sinResultados.hidden = productos.length > 0;
@@ -347,8 +352,16 @@
     }, 0);
 
     elementos.subtotal.textContent = formatearPrecio(total);
+
+    var antes = elementos.contador.textContent;
     elementos.contador.textContent = String(unidades);
     elementos.contador.dataset.vacio = unidades === 0 ? "si" : "no";
+
+    if (unidades > 0 && String(unidades) !== antes) {
+      elementos.contador.classList.remove("pop");
+      void elementos.contador.offsetWidth;
+      elementos.contador.classList.add("pop");
+    }
 
     if (vacio) elementos.confirmacion.hidden = true;
   }
@@ -496,12 +509,19 @@
       "aria-label",
       oscuro ? "Cambiar a tema claro" : "Cambiar a tema oscuro"
     );
+
+    elementos.iconoTema.classList.remove("girando");
+    // Reinicia la animación aunque se pulse dos veces seguidas.
+    void elementos.iconoTema.offsetWidth;
+    elementos.iconoTema.classList.add("girando");
   }
 
-  function alternarTema() {
-    var actual = document.documentElement.dataset.tema;
-    var nuevo = actual === "oscuro" ? "claro" : "oscuro";
+  function sinMovimiento() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
 
+  function aplicarTema(nuevo) {
+    temaActual = nuevo;
     document.documentElement.dataset.tema = nuevo;
     pintarIconoTema();
 
@@ -510,6 +530,47 @@
     } catch (error) {
       // Sin almacenamiento, el tema vuelve al del sistema en la próxima visita.
     }
+  }
+
+  function alternarTema() {
+    // El tema se lleva en memoria porque el cambio real del DOM dentro de una
+    // transición de vista ocurre después; leer el atributo daría un valor viejo.
+    var nuevo = temaActual === "oscuro" ? "claro" : "oscuro";
+
+    // Sin la API de transiciones (o con movimiento reducido) se cambia de golpe.
+    // Con una transición en curso también: Chrome descarta la nueva y no aplica
+    // su cambio, así que el tema quedaría sin actualizar.
+    if (!document.startViewTransition || sinMovimiento() || transicionEnCurso) {
+      aplicarTema(nuevo);
+      return;
+    }
+
+    var caja = elementos.botonTema.getBoundingClientRect();
+    var centroX = caja.left + caja.width / 2;
+    var centroY = caja.top + caja.height / 2;
+
+    var alcanceX = Math.max(centroX, window.innerWidth - centroX);
+    var alcanceY = Math.max(centroY, window.innerHeight - centroY);
+    var radio = Math.sqrt(alcanceX * alcanceX + alcanceY * alcanceY);
+
+    var raiz = document.documentElement;
+    raiz.style.setProperty("--onda-x", centroX + "px");
+    raiz.style.setProperty("--onda-y", centroY + "px");
+    raiz.style.setProperty("--onda-r", radio + "px");
+
+    transicionEnCurso = true;
+    temaActual = nuevo;
+
+    var transicion = document.startViewTransition(function () {
+      // Se aplica el último tema pedido, no el que había al abrir la transición.
+      aplicarTema(temaActual);
+    });
+
+    var liberar = function () {
+      transicionEnCurso = false;
+    };
+
+    transicion.finished.then(liberar, liberar);
   }
 
   /* ---------- Horario ---------- */
@@ -554,16 +615,59 @@
     return hora12 + ":" + String(resto).padStart(2, "0") + " " + sufijo;
   }
 
+  /* ---------- Movimiento ---------- */
+
+  function prepararRevelados() {
+    var nodos = document.querySelectorAll("[data-revelar]");
+
+    if (sinMovimiento() || !("IntersectionObserver" in window)) {
+      nodos.forEach(function (nodo) {
+        nodo.dataset.visible = "si";
+      });
+      return;
+    }
+
+    var observador = new IntersectionObserver(
+      function (entradas) {
+        entradas.forEach(function (entrada) {
+          if (!entrada.isIntersecting) return;
+          entrada.target.dataset.visible = "si";
+          observador.unobserve(entrada.target);
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    nodos.forEach(function (nodo) {
+      observador.observe(nodo);
+    });
+  }
+
+  function vigilarCabecera() {
+    var cabecera = document.querySelector(".cabecera");
+    if (!cabecera) return;
+
+    var actualizar = function () {
+      cabecera.dataset.desplazado = window.scrollY > 12 ? "si" : "no";
+    };
+
+    window.addEventListener("scroll", actualizar, { passive: true });
+    actualizar();
+  }
+
   /* ---------- Arranque ---------- */
 
   function iniciar() {
     estado.carrito = leerCarrito();
+    temaActual = document.documentElement.dataset.tema || "claro";
 
     crearFiltros();
     pintarCarta();
     pintarCarrito();
     pintarIconoTema();
     pintarHorario();
+    prepararRevelados();
+    vigilarCabecera();
 
     if (elementos.anio) {
       elementos.anio.textContent = String(new Date().getFullYear());

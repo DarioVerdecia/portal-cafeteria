@@ -6,7 +6,8 @@ window.DATOS = {
     nombre: "Cafetería El Rincón",
     telefono: "+53 5 000 0000",
     whatsapp: "5350000000",
-    direccion: "Calle Principal #123, San Cristóbal, Artemisa",
+    direccion: "22.714272, -83.054655, San Cristóbal, Artemisa",
+    coordenadas: { lat: 22.714271977125037, lng: -83.05465482177375 },
   },
 
   categorias: [

@@ -19,6 +19,7 @@
   <script>
     // Aplica el tema guardado antes de pintar, para que no haya parpadeo.
     (function () {
+      document.documentElement.dataset.js = "si";
       try {
         var guardado = localStorage.getItem("rincon.tema");
         var prefiereOscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -86,7 +87,7 @@
     <section id="carta" class="seccion">
       <div class="seccion-cabecera">
         <div>
-          <h2>Nuestra carta</h2>
+          <h2 data-revelar>Nuestra carta</h2>
           <p class="seccion-texto">Elige lo que quieras y arma tu pedido. No necesitas cuenta de nada.</p>
         </div>
 
@@ -107,24 +108,24 @@
 
     <section id="servicios" class="seccion seccion-clara">
       <div class="contenido-estrecho">
-        <h2>Pedidos para eventos</h2>
+        <h2 data-revelar>Pedidos para eventos</h2>
         <p class="seccion-texto">
           Preparamos bandejas de dulces, bocaditos y café para cumpleaños, reuniones
           y actividades de trabajo. Se encargan con dos días de antelación.
         </p>
 
         <div class="tarjetas">
-          <article class="tarjeta">
+          <article class="tarjeta" data-revelar>
             <h3>Bandeja de dulces</h3>
             <p>Veinticinco piezas surtidas: tartaletas, bocaditos y dulce del día.</p>
             <span class="precio">3 500 CUP</span>
           </article>
-          <article class="tarjeta">
+          <article class="tarjeta" data-revelar>
             <h3>Café para reuniones</h3>
             <p>Termo de diez tazas con leche aparte, azúcar y vasos.</p>
             <span class="precio">1 800 CUP</span>
           </article>
-          <article class="tarjeta">
+          <article class="tarjeta" data-revelar>
             <h3>Desayuno de oficina</h3>
             <p>Pan con tortilla, jugo natural y café para diez personas.</p>
             <span class="precio">4 200 CUP</span>
@@ -136,8 +137,8 @@
     </section>
 
     <section id="horario" class="seccion">
-      <h2>Horario</h2>
-      <table class="horario">
+      <h2 data-revelar>Horario</h2>
+      <table class="horario" data-revelar>
         <caption class="oculto">Horario de atención de la cafetería</caption>
         <tbody>
           <tr data-dia="1,2,3,4,5"><th scope="row">Lunes a viernes</th><td>7:00 a.m. – 7:00 p.m.</td></tr>
@@ -150,13 +151,14 @@
 
     <section id="contacto" class="seccion seccion-clara">
       <div class="contenido-estrecho">
-        <h2>Contacto</h2>
+        <h2 data-revelar>Contacto</h2>
 
-        <div class="contacto-rejilla">
+        <div class="contacto-rejilla" data-revelar>
           <div>
             <h3>Dirección</h3>
-            <p>Calle Principal #123, San Cristóbal, Artemisa.</p>
-            <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Cafeter%C3%ADa+San+Crist%C3%B3bal+Artemisa" target="_blank" rel="noopener">Ver en el mapa</a></p>
+            <p>22.714272, -83.054655</p>
+            <p>San Cristóbal, Artemisa</p>
+            <p><a href="https://www.google.com/maps/search/?api=1&amp;query=22.714271977125037,-83.05465482177375" target="_blank" rel="noopener">Ver en el mapa</a></p>
           </div>
           <div>
             <h3>Teléfono y WhatsApp</h3>
@@ -168,17 +170,13 @@
             <p>Los pedidos para eventos se confirman por WhatsApp con dos días de antelación.</p>
           </div>
         </div>
-
-        <p class="nota">
-          Los datos de contacto son de ejemplo, porque esta cafetería es un proyecto de portafolio.
-        </p>
       </div>
     </section>
   </main>
 
   <footer class="pie">
-    <p>Cafetería El Rincón, San Cristóbal. Proyecto de portafolio de Darío Verdecia.</p>
-    <p class="pie-menor">Hecho con HTML, CSS y JavaScript, sin dependencias externas. <span id="anio"></span></p>
+    <p>Cafetería El Rincón · San Cristóbal, Artemisa</p>
+    <p class="pie-menor">© <span id="anio"></span> Cafetería El Rincón</p>
   </footer>
 
   <!-- Carrito -->

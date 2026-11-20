@@ -1,8 +1,7 @@
 # Portal web: Cafetería El Rincón
 
-Sitio web de una cafetería ficticia en San Cristóbal, Artemisa. Es un proyecto de
-portafolio hecho con HTML, CSS y JavaScript, sin dependencias, sin frameworks y sin
-proceso de compilación.
+Sitio web de una cafetería en San Cristóbal, Artemisa. Hecho con HTML, CSS y
+JavaScript, sin dependencias, sin frameworks y sin proceso de compilación.
 
 La idea es que sirva como plantilla para cualquier negocio pequeño: se cambian los
 datos de un solo archivo y el sitio queda listo para entregar a un cliente.
@@ -19,7 +18,9 @@ datos de un solo archivo y el sitio queda listo para entregar a un cliente.
   entrega, nota para la cocina y el total, y lo envía por WhatsApp al número del negocio.
   Si el navegador bloquea la ventana, el texto se puede copiar con un botón.
 - **Tema claro y oscuro**: botón en la cabecera, con la preferencia guardada y respeto
-  por la configuración del sistema en la primera visita.
+  por la configuración del sistema en la primera visita. El cambio se dibuja con una
+  onda circular que nace en el botón, usando la API de transiciones de vista con vuelta
+  atrás instantánea en los navegadores que no la soportan.
 - **Horario inteligente**: resalta el día actual y calcula si el negocio está abierto
   en ese momento.
 - **Diseño adaptable**: una columna en teléfonos, rejilla de varias columnas en
