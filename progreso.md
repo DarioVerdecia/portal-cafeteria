@@ -17,11 +17,14 @@ de los tres, pero ya incluye una aplicación: un flujo de pedido completo.
 ## Dónde está todo
 
 - Carpeta: `C:\DarioAI\projects\portal-cafeteria`
-- Repositorio git local, rama `main`. **Sin remoto configurado todavía** (no está en GitHub).
+- Repositorio git local, rama `main`, conectado al remoto `origin`:
+  `https://github.com/DarioVerdecia/portal-cafeteria`.
+- Publicado con GitHub Pages en `https://darioverdecia.github.io/portal-cafeteria/`.
 - Commits:
   - `fd739ed` Portal completo de la cafetería (primera versión, hecha en otro chat)
   - `471260f` Carta interactiva con carrito, pedido por WhatsApp y tema claro/oscuro
   - `2b193da` Onda al cambiar de tema, animaciones de entrada y dirección real
+  - `8c49ed3` Añadir progreso.md para retomar el proyecto
 
 ## Archivos
 
@@ -91,13 +94,15 @@ El doble clic sobre `index.html` funciona, pero sin recarga automática.
 - Mensaje de WhatsApp generado con el pedido completo.
 - Errores de validación (nombre vacío, teléfono corto).
 - Animación `onda` corriendo sobre `::view-transition-new(root)`.
+- Sitio publicado: `https://darioverdecia.github.io/portal-cafeteria/` responde con estado
+  200 y la carta cargada.
 - Sin errores en consola.
 
 ## Pendiente
 
-1. **Publicar**: crear el repositorio `portal-cafeteria` en GitHub (cuenta `DarioVerdecia`),
-   `git remote add origin`, `git push -u origin main`, y activar Pages en la rama `main`,
-   carpeta raíz. El enlace `https://darioverdecia.github.io/portal-cafeteria/` va en la
+1. **Publicar** (hecho el 20 de noviembre de 2026): repositorio creado, `origin`
+   conectado, `main` subida y GitHub Pages activo en la rama `main`, carpeta raíz.
+   Enlace: `https://darioverdecia.github.io/portal-cafeteria/`. Falta ponerlo en la
    descripción del repositorio y en LinkedIn.
 2. **Etapa 2 del portafolio**: la misma cafetería con Python, Flask y SQLite, con panel
    para editar la carta y pedidos guardados en base de datos. Es lo que demuestra servidor,
